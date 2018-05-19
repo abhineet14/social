@@ -1,15 +1,22 @@
 package com.abhineet.social.Service;
 
+import com.abhineet.social.helper.Producer;
 import com.abhineet.social.model.databaseAccessObject.UserDao;
 import com.abhineet.social.model.databaseObject.User;
 import com.abhineet.social.model.response.Acknowledgement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Queue;
+
 @Service
 public class UserService {
     @Autowired
     UserDao userDao;
+    @Autowired
+    Producer producer;
+    @Autowired
+    Queue<String> friendShipQueue;
     public Acknowledgement addUser(User user){
         Acknowledgement acknowledgement= new Acknowledgement();
         try {
@@ -47,6 +54,7 @@ public class UserService {
         userDao.updateUser(friend);
         acknowledgement.setMessage("added freind");
         acknowledgement.setSuccess(true);
+        producer.produce(userId+":"+friendId,friendShipQueue );
         return  acknowledgement;
 
     }
