@@ -10,3 +10,11 @@ Host: localhost:8080
 
 GET /user/getById?userId=abhineet
 
+
+POST /post/add
+Host: localhost:8080
+{
+    "value": "I am good",
+    "userId": "abhineet"
+}
+
