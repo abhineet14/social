@@ -13,5 +13,13 @@ postIds text,
 password varchar(200),
 primary key(userId)
 );
-
 create index emailIdx on user (email);
+
+create table post(
+postId INT(10) AUTO_INCREMENT,
+value text,
+created_on datetime,
+commentId text,
+userid varchar(40),
+primary key(postId)
+);

@@ -21,7 +21,7 @@ public class PostDao {
     JdbcTemplate jdbcTemplate;
 
     public void addPost(Post post){
-        String sql = "insert into post (value,created_on,comment,userId)" +
+        String sql = "insert into post (value,created_on,commentId,userId)" +
                 "values(?,?,?,?)";
         logger.info("going to execute query = {}", sql);
         jdbcTemplate.update(sql,post.getValue(),new Date(),post.getCommentIds(),post.getUserId());

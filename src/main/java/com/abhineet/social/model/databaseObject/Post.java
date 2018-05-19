@@ -1,5 +1,6 @@
 package com.abhineet.social.model.databaseObject;
 
+import com.abhineet.social.helper.ListHelper;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -60,12 +61,12 @@ public class Post implements RowMapper<Post>
     @Override
     public Post mapRow(ResultSet resultSet, int i) throws SQLException {
         Post post = new Post();
+        ListHelper listHelper=new ListHelper();
         post.setPostId(resultSet.getString("postId"));
         post.setValue(resultSet.getString("value"));
         post.setCreated_on(resultSet.getDate("created_on"));
         post.setUserId(resultSet.getString("userId"));
-        post.setCommentIds(resultSet.getString("comment")!=null?
-                Arrays.asList(resultSet.getString("comment").split(",")):new ArrayList<>());
+        post.setCommentIds(listHelper.convertCsvToList(resultSet.getString("commentId")));
         return post;
     }
 }
