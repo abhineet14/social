@@ -26,4 +26,28 @@ public class UserService {
     public User getUserById(String id){
         return userDao.getUserById(id);
     }
+
+    public Acknowledgement addFriend(String userId, String friendId){
+        User user = userDao.getUserById(userId);
+        User friend = userDao.getUserById(friendId);
+        Acknowledgement acknowledgement =  new Acknowledgement();
+        if(user==null || friend==null){
+            acknowledgement.setMessage("invalid user Id");
+            acknowledgement.setSuccess(false);
+            return acknowledgement;
+        }
+        if(user.getFriendUserIds().contains(friendId) ||  friend.getFriendUserIds().contains(userId)){
+            acknowledgement.setSuccess(false);
+            acknowledgement.setMessage("they are already friend");
+            return acknowledgement;
+        }
+        user.getFriendUserIds().add(friendId);
+        friend.getFriendUserIds().add(userId);
+        userDao.updateUser(user);
+        userDao.updateUser(friend);
+        acknowledgement.setMessage("added freind");
+        acknowledgement.setSuccess(true);
+        return  acknowledgement;
+
+    }
 }

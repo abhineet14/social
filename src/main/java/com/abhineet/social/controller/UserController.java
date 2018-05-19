@@ -25,4 +25,9 @@ public class UserController {
     public @ResponseBody User getUser(@RequestParam  String userId){
         return userService.getUserById(userId);
     }
+
+    @RequestMapping(path = "addFriend")
+    public @ResponseBody Acknowledgement addFriend(@RequestParam String userId, @RequestParam String friendId){
+        return  userService.addFriend(userId,friendId);
+    }
 }
