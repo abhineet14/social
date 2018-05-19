@@ -1,0 +1,12 @@
+POST /user/add HTTP/1.1
+Host: localhost:8080
+{
+"userId":"abhineet",
+"email" :"sri.abhineet@gmail.com",
+"password":"abcde",
+"dateOfBirth":"1998-03-14",
+"gender":"M"
+}
+
+GET /user/getById?userId=abhineet
+
