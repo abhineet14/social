@@ -14,7 +14,7 @@ import java.util.Date;
 @Repository
 public class PostDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
+    private static final Logger logger = LoggerFactory.getLogger(PostDao.class);
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired

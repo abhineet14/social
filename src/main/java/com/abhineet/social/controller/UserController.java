@@ -1,6 +1,8 @@
 package com.abhineet.social.controller;
 
+import com.abhineet.social.Service.FriendShipService;
 import com.abhineet.social.Service.UserService;
+import com.abhineet.social.model.databaseObject.MutualFriend;
 import com.abhineet.social.model.databaseObject.User;
 import com.abhineet.social.model.response.Acknowledgement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class UserController {
 
     @Autowired
     private  UserService userService;
+    @Autowired
+    FriendShipService friendShipService;
     @RequestMapping(path = "add")
     public @ResponseBody Acknowledgement addUser(@RequestBody  User user){
         return userService.addUser(user);
@@ -30,4 +34,10 @@ public class UserController {
     public @ResponseBody Acknowledgement addFriend(@RequestParam String userId, @RequestParam String friendId){
         return  userService.addFriend(userId,friendId);
     }
+    @RequestMapping(path = "getMutualFriend")
+    public @ResponseBody
+    MutualFriend getMutualFriend(@RequestParam String friend1Id, @RequestParam String friend2Id){
+        return  friendShipService.getMutualFriends(friend1Id,friend2Id);
+    }
+
 }

@@ -19,3 +19,4 @@ Host: localhost:8080
 }
 
 POST /user/addFriend?userId=anubhav&amp;friendId=akal
+GET /user/getMutualFriend?friend1Id=Z&amp;friend2Id=Y
